@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Iniciar sesión</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-bg"></div>
+    <div class="login-grid"></div>
+
+    <div class="login-wrap">
+
+        <!-- LEFT PANEL -->
+        <div class="login-left">
+            <div class="brand">
+                <div class="sidebar-logo">
+        <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+        <div class="sidebar-logo-text">RiskLens AI</div>
+    </div>
+                <div class="brand-name">RiskLens AI</div>
+                <div class="brand-tag">// FINANCIAL INTELLIGENCE</div>
+            </div>
+
+            <div class="login-stats">
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">98.4%</span></div>
+                    <div class="stat-label">Precisión en análisis de riesgo</div>
+                </div>
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">2.3s</span></div>
+                    <div class="stat-label">Tiempo promedio de análisis</div>
+                </div>
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">12K</span></div>
+                    <div class="stat-label">Empresas analizadas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="login-right">
+            <div class="login-title">Bienvenido de vuelta</div>
+            <div class="login-sub">Inicia sesión para acceder a tu panel de análisis</div>
+
+            <div class="form-group">
+                <label class="form-label">Email corporativo</label>
+                <input id="emailInput" class="form-input" type="email" placeholder="analyst@empresa.com">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contraseña</label>
+                <input id="passwordInput" class="form-input" type="password" placeholder="••••••••••">
+                <div class="forgot-link"><a href="forgot-password.html">¿Olvidaste tu contraseña?</a></div>
+            </div>
+
+            <div id="loginError"
+                style="display:none;color:var(--red2);font-size:13px;margin-bottom:10px;font-family:'JetBrains Mono',monospace;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:10px 14px;">
+            </div>
+
+            <button class="btn-login" id="btnLogin">
+                Iniciar sesión →
+            </button>
+
+            <div class="login-divider">o</div>
+
+            <button class="btn-register" onclick="window.location.href='register.html'">
+                Crear cuenta nueva
+            </button>
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

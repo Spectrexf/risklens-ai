@@ -1,0 +1,226 @@
+/* ─── KPI CARDS ─── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.kpi-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-1px);
+}
+.kpi-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--card-accent, var(--accent));
+}
+.kpi-label {
+  font-size: 12px;
+  color: var(--text3);
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.kpi-value {
+  font-family: "Syne", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.kpi-change {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.kpi-change.up {
+  color: var(--green2);
+}
+.kpi-change.down {
+  color: var(--red2);
+}
+.kpi-change.neutral {
+  color: var(--text3);
+}
+.kpi-icon {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  font-size: 22px;
+  opacity: 0.3;
+}
+
+/* ─── SPARKLINE ─── */
+.sparkline-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 40px;
+  margin-top: 12px;
+}
+.spark-bar {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  min-height: 4px;
+}
+
+/* ─── DASHBOARD GRID ─── */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* ─── ANALYSIS FORM ─── */
+.btn-analyze {
+  grid-column: 1 / -1;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--accent), #2563eb);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-family: "Syne", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-analyze:hover {
+  box-shadow: 0 6px 24px rgba(59, 130, 246, 0.5);
+  transform: translateY(-1px);
+}
+.btn-analyze:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── HISTORY TABLE ─── */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.history-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 11px;
+  color: var(--text3);
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+.history-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.history-table tr:last-child td {
+  border-bottom: none;
+}
+.history-table tr:hover td {
+  background: rgba(59, 130, 246, 0.04);
+}
+.table-company {
+  font-weight: 600;
+  color: var(--text);
+}
+.score-value {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+}
+.btn-view {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text2);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: "DM Sans", sans-serif;
+}
+.btn-view:hover {
+  border-color: var(--accent);
+  color: var(--accent2);
+}
+
+/* ─── DETAIL PANEL ─── */
+.ratio-pill {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  min-width: 90px;
+}
+.ratio-pill-label {
+  font-size: 10px;
+  color: var(--text3);
+  font-family: "JetBrains Mono", monospace;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.ratio-pill-value {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--cyan);
+}
+.btn-export-pdf {
+  width: 100%;
+  padding: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 10px;
+  color: var(--green2);
+  font-family: "Syne", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-export-pdf:hover {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}

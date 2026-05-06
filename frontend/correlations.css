@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════
+   RISKLENS AI — CORRELATIONS STYLES
+═══════════════════════════════════════════ */
+
+.corr-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.timeframe-selector {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 2px;
+}
+.tf-btn {
+    padding: 6px 14px;
+    border-radius: 7px;
+    border: none;
+    background: transparent;
+    color: var(--text2);
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
+    transition: all 0.18s;
+}
+.tf-btn.active            { background: var(--accent); color: white; }
+.tf-btn:hover:not(.active){ color: var(--text); }
+
+.corr-info {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--text3);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.corr-legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-swatch    { width: 24px; height: 10px; border-radius: 3px; }
+
+.heatmap-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: auto;
+    padding: 22px;
+}
+.heatmap-table {
+    border-collapse: separate;
+    border-spacing: 3px;
+    min-width: 620px;
+}
+.heatmap-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text2);
+    padding: 6px 8px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+.heatmap-table td {
+    width: 60px; height: 50px;
+    border-radius: 6px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+}
+.heatmap-table td:hover { transform: scale(1.08); z-index: 5; }
+.heatmap-table td.diag  { background: var(--surface2) !important; color: var(--text3) !important; font-size: 10px; }
+.heatmap-row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text2);
+    padding: 0 12px 0 4px;
+    text-align: right;
+    white-space: nowrap;
+}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body style="display:flex;flex-direction:row;min-height:100vh">
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">
+                <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+                <div class="sidebar-logo-text">RiskLens AI</div>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-label">Principal</div>
+            <a class="nav-item active" href="index.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg></div>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="news.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2" />
+                        <path d="M18 14h-8" />
+                        <path d="M15 18h-5" />
+                        <path d="M10 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2" />
+                    </svg></div>
+                <span>Noticias</span>
+            </a>
+            <a class="nav-item" href="correlations.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3v18h18" />
+                        <path d="m19 9-5 5-4-4-3 3" />
+                    </svg></div>
+                <span>Correlaciones</span>
+            </a>
+            <a class="nav-item" href="portfolio.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    </svg></div>
+                <span>Cartera</span>
+            </a>
+            <a class="nav-item" href="blog.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9" />
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg></div>
+                <span>Blog</span>
+            </a>
+        </div>
+        <div class="sidebar-section" style="margin-top:12px">
+            <div class="sidebar-section-label">Cuenta</div>
+            <a class="nav-item" href="subscription.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 12V22H4V12" />
+                        <path d="M22 7H2v5h20V7z" />
+                        <path d="M12 22V7" />
+                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+                    </svg></div>
+                <span>Suscripción</span>
+            </a>
+            <a class="nav-item" href="profile.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg></div>
+                <span>Perfil</span>
+            </a>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="user-card" onclick="window.location.href='profile.html'">
+                <div class="user-avatar" id="userAvatar">AA</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Usuario</div>
+                    <div class="user-plan" id="userPlan">Free</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Dashboard</div>
+            <div class="topbar-actions">
+                <button class="topbar-btn" id="btnAdmin" style="display:none"
+                    onclick="window.location.href='admin.html'">Panel admin</button>
+                <button class="topbar-btn" id="btnExportAll">Estadísticas</button>
+                <button class="topbar-btn primary" onclick="document.getElementById('companyInput').focus()">+ Nuevo
+                    análisis</button>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div class="kpi-grid">
+                <div class="kpi-card fade-up fade-up-1" style="--card-accent:var(--accent)">
+                    <div class="kpi-label">Análisis totales</div>
+                    <div class="kpi-value" id="kpiTotal">—</div>
+                    <div class="kpi-change up" id="kpiTotalChange">Cargando...</div>
+                </div>
+                <div class="kpi-card fade-up fade-up-2" style="--card-accent:var(--green)">
+                    <div class="kpi-label">Riesgo bajo</div>
+                    <div class="kpi-value" id="kpiLow">—</div>
+                    <div class="kpi-change up" id="kpiLowPct"></div>
+                </div>
+                <div class="kpi-card fade-up fade-up-3" style="--card-accent:var(--orange)">
+                    <div class="kpi-label">Riesgo medio</div>
+                    <div class="kpi-value" id="kpiMed">—</div>
+                    <div class="kpi-change neutral">→ Sin cambios</div>
+                </div>
+                <div class="kpi-card fade-up fade-up-4" style="--card-accent:var(--red)">
+                    <div class="kpi-label">Riesgo alto</div>
+                    <div class="kpi-value" id="kpiHigh">—</div>
+                    <div class="kpi-change down">↓ -3 vs mes anterior</div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+
+                <div style="display:flex;flex-direction:column;gap:20px">
+
+                    <div class="panel fade-up">
+                        <div class="panel-header">
+                            <div class="panel-title">Nuevo análisis financiero</div>
+                            <div style="display:flex;gap:6px">
+                                <button id="tabManual" class="tab-btn active"
+                                    onclick="switchTab('manual')">Manual</button>
+                                <button id="tabAuto" class="tab-btn" onclick="switchTab('auto')">Buscar empresa</button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div id="formManual">
+                                <div
+                                    style="padding:10px 14px;background:var(--surface2);border-radius:var(--r);font-size:12px;color:var(--text2);border-left:3px solid var(--accent);margin-bottom:14px">
+                                    Introduce los datos financieros de la empresa manualmente. Útil para empresas no
+                                    cotizadas.
+                                </div>
+                                <div class="analysis-form">
+                                    <div class="field-group field-full">
+                                        <label>Nombre de la empresa</label>
+                                        <input id="companyInput" class="field-input" placeholder="ej. Empresa XYZ S.L.">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Activo corriente (€)</label>
+                                        <input id="currentAssets" class="field-input" placeholder="1,000,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Pasivo corriente (€)</label>
+                                        <input id="currentLiabilities" class="field-input" placeholder="600,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Deuda total (€)</label>
+                                        <input id="totalDebt" class="field-input" placeholder="800,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Patrimonio neto (€)</label>
+                                        <input id="equity" class="field-input" placeholder="900,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Ingresos netos (€)</label>
+                                        <input id="netIncome" class="field-input" placeholder="120,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Ventas totales (€)</label>
+                                        <input id="revenue" class="field-input" placeholder="1,500,000">
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Activos totales (€)</label>
+                                        <input id="totalAssets" class="field-input" placeholder="2,500,000">
+                                    </div>
+                                    <div id="analyzeError"
+                                        style="display:none;grid-column:1/-1;color:var(--red);font-size:12px;background:var(--red-bg);border:1px solid rgba(220,38,38,.15);border-radius:var(--r);padding:10px 14px;font-family:'IBM Plex Mono',monospace">
+                                    </div>
+                                    <button class="btn-analyze" id="btnAnalyze">Analizar con IA</button>
+                                </div>
+                            </div>
+
+                            <div id="formAuto" style="display:none">
+                                <div
+                                    style="padding:10px 14px;background:var(--surface2);border-radius:var(--r);font-size:12px;color:var(--text2);border-left:3px solid var(--cyan);margin-bottom:14px">
+                                    Busca una empresa cotizada. El sistema obtiene datos reales de Yahoo Finance y
+                                    genera un análisis completo con CAPM, Monte Carlo, Wyckoff y recomendación
+                                    BUY/HOLD/SELL.
+                                </div>
+                                <div class="analysis-form">
+                                    <div class="field-group field-full">
+                                        <label>Nombre de la empresa</label>
+                                        <div style="display:flex;gap:8px">
+                                            <input id="searchInput" class="field-input"
+                                                placeholder="ej. Apple, Tesla, Inditex..." style="flex:1">
+                                            <button id="btnSearch" class="topbar-btn primary"
+                                                style="white-space:nowrap;padding:9px 16px">Buscar</button>
+                                        </div>
+                                    </div>
+                                    <div id="searchResults" style="display:none;grid-column:1/-1">
+                                        <label
+                                            style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;display:block">Selecciona
+                                            la empresa</label>
+                                        <div id="tickerList" style="display:flex;flex-direction:column;gap:6px"></div>
+                                    </div>
+                                    <div id="tickerConfirmed" style="display:none;grid-column:1/-1">
+                                        <div
+                                            style="background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r);padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+                                            <div>
+                                                <div id="tickerNombre"
+                                                    style="font-size:14px;font-weight:500;color:var(--text)"></div>
+                                                <div id="tickerSymbol"
+                                                    style="font-size:12px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-top:2px">
+                                                </div>
+                                            </div>
+                                            <button onclick="resetSearch()"
+                                                style="font-size:11px;color:var(--text3);background:none;border:1px solid var(--border2);border-radius:var(--r-sm);padding:4px 10px;cursor:pointer">Cambiar</button>
+                                        </div>
+                                    </div>
+                                    <div class="field-group">
+                                        <label>Capital a analizar (€)</label>
+                                        <input id="autoCapital" class="field-input" placeholder="10,000" value="10000">
+                                    </div>
+                                    <div id="autoError"
+                                        style="display:none;grid-column:1/-1;color:var(--red);font-size:12px;background:var(--red-bg);border:1px solid rgba(220,38,38,.15);border-radius:var(--r);padding:10px 14px;font-family:'IBM Plex Mono',monospace">
+                                    </div>
+                                    <button class="btn-analyze" id="btnAutoAnalyze" style="grid-column:1/-1">Análisis
+                                        avanzado completo</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="panel fade-up">
+                        <div class="panel-header">
+                            <div class="panel-title">Historial de análisis</div>
+                            <div class="panel-actions">
+                                <button class="topbar-btn" style="font-size:12px">Filtrar</button>
+                                <button class="topbar-btn" style="font-size:12px" id="btnReload">↻ Actualizar</button>
+                            </div>
+                        </div>
+                        <div style="overflow-x:auto">
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:36px"><input type="checkbox" id="checkAll"
+                                                style="cursor:pointer"></th>
+                                        <th>Empresa</th>
+                                        <th>Fecha</th>
+                                        <th>Score</th>
+                                        <th>Riesgo</th>
+                                        <th>Ratio L.</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyBody">
+                                    <tr>
+                                        <td colspan="7"
+                                            style="text-align:center;color:var(--text3);padding:28px;font-size:13px">
+                                            Cargando análisis...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="panel fade-up" style="display:flex;flex-direction:column;min-height:500px" id="detailPanel">
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-title" id="detailTitle">Detalle del análisis</div>
+                            <div style="font-size:11px;color:var(--text3);margin-top:2px;font-family:'IBM Plex Mono',monospace"
+                                id="detailSubtitle">Selecciona un análisis</div>
+                        </div>
+                        <span id="detailScore" style="display:none"></span>
+                    </div>
+                    <div id="detailEmpty" class="empty-state" style="flex:1">
+                        <div class="empty-title">Sin análisis seleccionado</div>
+                        <div class="empty-desc">Haz clic en "Ver →" para ver el detalle completo y el informe de IA
+                        </div>
+                    </div>
+                    <div id="detailContent" style="display:none;flex-direction:column;flex:1">
+                        <div style="padding:16px 22px;border-bottom:1px solid var(--border)">
+                            <div
+                                style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px">
+                                Ratios financieros</div>
+                            <div style="display:flex;flex-wrap:wrap;gap:8px">
+                                <div class="ratio-pill">
+                                    <div class="ratio-pill-label">Liquidez</div>
+                                    <div class="ratio-pill-value" id="ratioL">—</div>
+                                </div>
+                                <div class="ratio-pill">
+                                    <div class="ratio-pill-label">Endeud.</div>
+                                    <div class="ratio-pill-value" id="ratioE">—</div>
+                                </div>
+                                <div class="ratio-pill">
+                                    <div class="ratio-pill-label">ROE</div>
+                                    <div class="ratio-pill-value" id="ratioR">—</div>
+                                </div>
+                                <div class="ratio-pill">
+                                    <div class="ratio-pill-label">Margen</div>
+                                    <div class="ratio-pill-value" id="ratioM">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding:16px 22px;flex:1">
+                            <div
+                                style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;letter-spacing:.8px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+                                Informe generado por IA
+                                <span class="tag blue">Groq</span>
+                            </div>
+                            <div id="aiReportBox"
+                                style="font-size:13px;color:var(--text2);line-height:1.8;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px;min-height:140px;max-height:220px;overflow-y:auto">
+                            </div>
+                            <div style="margin-top:12px">
+                                <button class="btn-export-pdf" id="btnExportPdf" style="display:none">Exportar informe
+                                    como PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolioBar"
+        style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1c1c1c;border:1px solid rgba(37,99,235,0.4);border-radius:10px;padding:12px 20px;align-items:center;gap:16px;z-index:999;box-shadow:0 8px 40px rgba(0,0,0,0.6)">
+        <span id="portfolioCount" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#a3a3a3">0 empresas
+            seleccionadas</span>
+        <button id="btnAnalizarCartera"
+            style="padding:8px 18px;background:#2563eb;border:none;border-radius:6px;color:white;font-size:13px;font-weight:500;cursor:pointer;font-family:'IBM Plex Sans',sans-serif">Analizar
+            cartera</button>
+    </div>
+    <script src="sync.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

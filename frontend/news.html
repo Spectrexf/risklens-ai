@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Noticias</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="news.css">
+</head>
+
+<body style="display:flex;flex-direction:row;min-height:100vh">
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-logo">
+        <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+        <div class="sidebar-logo-text">RiskLens AI</div>
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Principal</div>
+    <a class="nav-item" href="index.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <span>Dashboard</span>
+    </a>
+    <a class="nav-item" href="news.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+          <path d="M18 14h-8"/><path d="M15 18h-5"/>
+          <path d="M10 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/>
+        </svg>
+      </div>
+      <span>Noticias</span>
+    </a>
+    <a class="nav-item" href="correlations.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+        </svg>
+      </div>
+      <span>Correlaciones</span>
+    </a>
+    <a class="nav-item" href="portfolio.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        </svg>
+      </div>
+      <span>Cartera</span>
+    </a>
+    <a class="nav-item" href="blog.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+      </div>
+      <span>Blog</span>
+    </a>
+  </div>
+
+  <div class="sidebar-section" style="margin-top:12px">
+    <div class="sidebar-section-label">Cuenta</div>
+    <a class="nav-item" href="subscription.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+        </svg>
+      </div>
+      <span>Suscripción</span>
+    </a>
+    <a class="nav-item" href="profile.html">
+      <div class="nav-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <span>Perfil</span>
+    </a>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="user-card" onclick="window.location.href='profile.html'">
+      <div class="user-avatar" id="userAvatar">AA</div>
+      <div class="user-info">
+        <div class="user-name" id="userName">Usuario</div>
+        <div class="user-plan" id="userPlan">Free</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+    <!-- ─── MAIN ─── -->
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">📰 Noticias financieras</div>
+            <div class="topbar-actions">
+                <button class="topbar-btn">⚡ En tiempo real</button>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div class="news-filters" id="newsFilters">
+                <div class="filter-chip active" data-filter="all">Todas</div>
+                <div class="filter-chip" data-filter="Mercados">Mercados</div>
+                <div class="filter-chip" data-filter="Forex">Forex</div>
+                <div class="filter-chip" data-filter="Materias primas">Materias primas</div>
+                <div class="filter-chip" data-filter="Renta fija">Renta fija</div>
+                <div class="filter-chip" data-filter="Cripto">Cripto</div>
+                <div class="filter-chip" data-filter="Macro">Macro</div>
+            </div>
+
+            <div class="news-grid" id="newsGrid"></div>
+        </div>
+    </div>
+    <script src="sync.js"></script>
+    <script src="news.js"></script>
+</body>
+
+</html>

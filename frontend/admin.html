@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="display:flex;flex-direction:row;min-height:100vh">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">
+        <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+        <div class="sidebar-logo-text">RiskLens AI</div>
+    </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-label">Principal</div>
+            <a class="nav-item" href="index.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg></div>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="blog.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M12 20h9" />
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg></div>
+                <span>Blog</span>
+            </a>
+        </div>
+        <div class="sidebar-section" style="margin-top:12px">
+            <div class="sidebar-section-label">Admin</div>
+            <a class="nav-item active" href="admin.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg></div>
+                <span>Panel admin</span>
+            </a>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="user-card" onclick="window.location.href='profile.html'">
+                <div class="user-avatar" id="userAvatar">AA</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Admin</div>
+                    <div class="user-plan">admin</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Panel de administración</div>
+            <div class="topbar-actions">
+                <button class="topbar-btn" onclick="window.location.href='index.html'">← Volver</button>
+            </div>
+        </div>
+
+        <div class="page-content">
+
+            <div style="display:flex;gap:6px;margin-bottom:24px">
+                <button id="tabSug" class="tab-btn active" onclick="switchTab('sugerencias')">Sugerencias</button>
+                <button id="tabBlog" class="tab-btn" onclick="switchTab('blog')">Gestionar blog</button>
+            </div>
+
+            <div id="panelSugerencias">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Sugerencias recibidas</div>
+                        <span class="tag" id="countSug">0</span>
+                    </div>
+                    <div id="listaSugerencias" style="display:flex;flex-direction:column"></div>
+                </div>
+            </div>
+
+            <div id="panelBlog" style="display:none">
+                <div class="panel fade-up" style="margin-bottom:20px">
+                    <div class="panel-header">
+                        <div class="panel-title">Nuevo post</div>
+                    </div>
+                    <div class="panel-body">
+                        <div style="display:flex;flex-direction:column;gap:12px">
+                            <div class="field-group">
+                                <label>Título</label>
+                                <input id="postTitulo" class="field-input" placeholder="Título del post">
+                            </div>
+                            <div class="field-group">
+                                <label>Contenido</label>
+                                <textarea id="postContenido" class="field-input"
+                                    placeholder="Escribe el contenido aquí..."
+                                    style="min-height:180px;resize:vertical;font-family:'IBM Plex Sans',sans-serif;line-height:1.6"></textarea>
+                            </div>
+                            <div class="field-group">
+                                <label>Imagen (opcional)</label>
+                                <input type="file" id="postImagen" accept="image/*"
+                                    style="font-size:13px;color:var(--text2);width:100%;margin-bottom:8px">
+                                <div id="imagenPreview" style="display:none;margin-top:8px">
+                                    <img id="imagenImg"
+                                        style="max-width:100%;max-height:200px;border-radius:var(--r);border:1px solid var(--border)">
+                                    <div id="imagenUrl"
+                                        style="font-size:11px;color:var(--text3);font-family:'IBM Plex Mono',monospace;margin-top:4px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="postError"
+                                style="display:none;color:var(--red);font-size:12px;font-family:'IBM Plex Mono',monospace;background:var(--red-bg);border:1px solid rgba(220,38,38,.15);border-radius:var(--r);padding:10px 14px">
+                            </div>
+                            <div style="display:flex;gap:10px">
+                                <button class="topbar-btn" id="btnPublicar">Guardar como borrador</button>
+                                <button class="btn-analyze" id="btnSubirPost" style="flex:1">Publicar post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <div class="panel-title">Todos los posts</div>
+                    </div>
+                    <div id="listaPosts" style="display:flex;flex-direction:column"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            const isSug = tab === 'sugerencias';
+            document.getElementById('panelSugerencias').style.display = isSug ? 'block' : 'none';
+            document.getElementById('panelBlog').style.display = isSug ? 'none' : 'block';
+            document.getElementById('tabSug').classList.toggle('active', isSug);
+            document.getElementById('tabBlog').classList.toggle('active', !isSug);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const token = localStorage.getItem('token');
+            if (!token) window.location.href = 'login.html';
+
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            if (user.role !== 'admin') window.location.href = 'index.html';
+
+            const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+
+            document.getElementById('userAvatar').textContent = (user.name || user.email || 'AD').substring(0, 2).toUpperCase();
+            document.getElementById('userName').textContent = user.name || user.email || 'Admin';
+
+            async function loadSugerencias() {
+                try {
+                    const res = await fetch('http://localhost:3001/suggestions', { headers });
+                    const data = await res.json();
+                    if (!data.ok) return;
+
+                    document.getElementById('countSug').textContent = data.items.length;
+                    const lista = document.getElementById('listaSugerencias');
+                    lista.innerHTML = '';
+
+                    if (data.items.length === 0) {
+                        lista.innerHTML = '<div class="empty-state"><div class="empty-title">Sin sugerencias todavía</div></div>';
+                        return;
+                    }
+
+                    for (let i = 0; i < data.items.length; i++) {
+                        const s = data.items[i];
+                        const date = new Date(s.createdAt).toLocaleDateString('es-ES');
+                        const div = document.createElement('div');
+                        div.style.cssText = 'padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px' + (s.leida ? ';opacity:.5' : '');
+                        div.innerHTML =
+                            '<div style="flex:1">' +
+                            '<div style="font-size:11px;color:var(--text3);font-family:\'IBM Plex Mono\',monospace;margin-bottom:6px">' + s.email + ' · ' + date + '</div>' +
+                            '<div style="font-size:13px;color:var(--text2);line-height:1.6">' + s.texto + '</div>' +
+                            '</div>' +
+                            (s.leida ? '<span style="font-size:10px;color:var(--text3);font-family:\'IBM Plex Mono\',monospace">leída</span>' :
+                                '<button class="btn-view" data-id="' + s._id + '">Marcar leída</button>');
+                        lista.appendChild(div);
+                    }
+
+                    const btns = lista.querySelectorAll('.btn-view');
+                    for (let i = 0; i < btns.length; i++) {
+                        btns[i].addEventListener('click', async function () {
+                            await fetch('http://localhost:3001/suggestions/' + this.dataset.id + '/leer', { method: 'PATCH', headers });
+                            loadSugerencias();
+                        });
+                    }
+                } catch (err) {
+                    console.error(err.message);
+                }
+            }
+
+            async function loadPosts() {
+                try {
+                    const res = await fetch('http://localhost:3001/posts', { headers });
+                    const data = await res.json();
+                    if (!data.ok) return;
+
+                    const lista = document.getElementById('listaPosts');
+                    lista.innerHTML = '';
+
+                    if (data.items.length === 0) {
+                        lista.innerHTML = '<div class="empty-state"><div class="empty-title">Sin posts todavía</div></div>';
+                        return;
+                    }
+
+                    for (let i = 0; i < data.items.length; i++) {
+                        const p = data.items[i];
+                        const date = new Date(p.createdAt).toLocaleDateString('es-ES');
+                        const div = document.createElement('div');
+                        div.style.cssText = 'padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px';
+                        div.innerHTML =
+                            '<div style="flex:1;min-width:0">' +
+                            '<div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px">' + p.titulo + '</div>' +
+                            '<div style="font-size:11px;color:var(--text3);font-family:\'IBM Plex Mono\',monospace">' + date + '</div>' +
+                            '</div>' +
+                            '<span class="risk-badge ' + (p.publicado ? 'risk-low' : 'risk-medium') + '">' + (p.publicado ? 'publicado' : 'borrador') + '</span>' +
+                            '<button class="btn-view" data-id="' + p._id + '">' + (p.publicado ? 'Despublicar' : 'Publicar') + '</button>' +
+                            '<button class="btn-view" data-id="' + p._id + '" data-action="delete" style="color:var(--red);border-color:var(--red)">Eliminar</button>';
+                        lista.appendChild(div);
+                    }
+
+                    const btns = lista.querySelectorAll('.btn-view');
+                    for (let i = 0; i < btns.length; i++) {
+                        btns[i].addEventListener('click', async function () {
+                            const id = this.dataset.id;
+                            const action = this.dataset.action;
+                            if (action === 'delete') {
+                                if (!confirm('¿Eliminar este post?')) return;
+                                await fetch('http://localhost:3001/posts/' + id, { method: 'DELETE', headers });
+                            } else {
+                                await fetch('http://localhost:3001/posts/' + id + '/publicar', { method: 'PATCH', headers });
+                            }
+                            loadPosts();
+                        });
+                    }
+                } catch (err) {
+                    console.error(err.message);
+                }
+            }
+
+            async function guardarPost(publicado) {
+                const titulo = document.getElementById('postTitulo').value.trim();
+                const contenido = document.getElementById('postContenido').value.trim();
+                const file = document.getElementById('postImagen').files[0];
+                const errorEl = document.getElementById('postError');
+
+                errorEl.style.display = 'none';
+
+                if (!titulo || !contenido) {
+                    errorEl.textContent = 'Título y contenido son obligatorios.';
+                    errorEl.style.display = 'block';
+                    return;
+                }
+
+                let imagenUrl = null;
+
+                if (file) {
+                    const formData = new FormData();
+                    formData.append('imagen', file);
+
+                    const resImg = await fetch('http://localhost:3001/posts/upload-image', {
+                        method: 'POST',
+                        headers: { 'Authorization': 'Bearer ' + token },
+                        body: formData
+                    });
+                    const dataImg = await resImg.json();
+                    if (!resImg.ok || !dataImg.ok) throw new Error(dataImg.error || 'Error al subir imagen');
+
+                    imagenUrl = dataImg.url;
+                    document.getElementById('imagenPreview').style.display = 'block';
+                    document.getElementById('imagenImg').src = imagenUrl;
+                    document.getElementById('imagenUrl').textContent = imagenUrl;
+                }
+
+                const res = await fetch('http://localhost:3001/posts', {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({ titulo, contenido, imagen: imagenUrl, publicado })
+                });
+                const data = await res.json();
+                if (!res.ok || !data.ok) throw new Error(data.error || 'Error al guardar');
+
+                document.getElementById('postTitulo').value = '';
+                document.getElementById('postContenido').value = '';
+                document.getElementById('postImagen').value = '';
+                document.getElementById('imagenPreview').style.display = 'none';
+
+                loadPosts();
+                switchTab('blog');
+            }
+
+            document.getElementById('btnPublicar').addEventListener('click', async function () {
+                const btn = document.getElementById('btnPublicar');
+                btn.textContent = 'Guardando...';
+                btn.disabled = true;
+                try {
+                    await guardarPost(false);
+                } catch (err) {
+                    document.getElementById('postError').textContent = 'Error: ' + err.message;
+                    document.getElementById('postError').style.display = 'block';
+                } finally {
+                    btn.textContent = 'Guardar como borrador';
+                    btn.disabled = false;
+                }
+            });
+
+            document.getElementById('btnSubirPost').addEventListener('click', async function () {
+                const btn = document.getElementById('btnSubirPost');
+                btn.textContent = 'Publicando...';
+                btn.disabled = true;
+                try {
+                    await guardarPost(true);
+                } catch (err) {
+                    document.getElementById('postError').textContent = 'Error: ' + err.message;
+                    document.getElementById('postError').style.display = 'block';
+                } finally {
+                    btn.textContent = 'Publicar post';
+                    btn.disabled = false;
+                }
+            });
+
+            loadSugerencias();
+            loadPosts();
+
+        });
+    </script>
+</body>
+
+</html>

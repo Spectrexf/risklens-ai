@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Crear cuenta</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-bg"></div>
+    <div class="login-grid"></div>
+
+    <div class="login-wrap">
+
+        <div class="login-left">
+            <div class="brand">
+                <div class="sidebar-logo">
+        <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+        <div class="sidebar-logo-text">RiskLens AI</div>
+    </div>
+                <div class="brand-tag">// FINANCIAL INTELLIGENCE</div>
+            </div>
+
+            <div class="login-stats">
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">98.4%</span></div>
+                    <div class="stat-label">Precisión en análisis de riesgo</div>
+                </div>
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">2.3s</span></div>
+                    <div class="stat-label">Tiempo promedio de análisis</div>
+                </div>
+                <div class="login-stat">
+                    <div class="stat-value"><span class="highlight">12K</span></div>
+                    <div class="stat-label">Empresas analizadas</div>
+                </div>
+            </div>
+
+            <div class="login-badge">Sistema operativo · 99.9% uptime</div>
+        </div>
+
+        <div class="login-right">
+            <div class="login-title">Crear cuenta</div>
+            <div class="login-sub">Regístrate para acceder a tu panel de análisis</div>
+
+            <div class="form-group">
+                <label class="form-label">Email corporativo</label>
+                <input id="regEmail" class="form-input" type="email" placeholder="analyst@empresa.com">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contraseña</label>
+                <input id="regPassword" class="form-input" type="password" placeholder="••••••••••">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Confirmar contraseña</label>
+                <input id="regConfirm" class="form-input" type="password" placeholder="••••••••••">
+            </div>
+
+            <div id="regError"
+                style="display:none;color:var(--red2);font-size:13px;margin-bottom:10px;font-family:'JetBrains Mono',monospace;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:10px 14px">
+            </div>
+
+            <button class="btn-login" id="btnRegister">Crear cuenta →</button>
+
+            <div class="login-divider">o</div>
+
+            <button class="btn-register" onclick="window.location.href='login.html'">¿Ya tienes cuenta? Inicia
+                sesión</button>
+        </div>
+
+    </div>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (token) window.location.href = 'index.html';
+
+        document.getElementById('btnRegister').addEventListener('click', async function () {
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+            const errorEl = document.getElementById('regError');
+            const btn = document.getElementById('btnRegister');
+
+            errorEl.style.display = 'none';
+
+            if (!email || !password) {
+                errorEl.textContent = 'Email y contraseña son obligatorios.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (password !== confirm) {
+                errorEl.textContent = 'Las contraseñas no coinciden.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            if (password.length < 6) {
+                errorEl.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+                errorEl.style.display = 'block';
+                return;
+            }
+
+            btn.textContent = 'Creando cuenta...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('http://localhost:3001/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (!res.ok || !data.ok) throw new Error(data.error || 'Error al registrarse');
+
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                window.location.href = 'index.html';
+            } catch (err) {
+                errorEl.textContent = 'Error: ' + err.message;
+                errorEl.style.display = 'block';
+            } finally {
+                btn.textContent = 'Crear cuenta →';
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('regConfirm').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') document.getElementById('btnRegister').click();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiskLens AI — Blog</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="display:flex;flex-direction:row;min-height:100vh">
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">
+        <img src="assets/images/logo.png" width="34" height="34" style="border-radius:8px">
+        <div class="sidebar-logo-text">RiskLens AI</div>
+    </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-section-label">Principal</div>
+            <a class="nav-item" href="index.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                    </svg></div>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-item" href="news.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2" />
+                        <path d="M18 14h-8" />
+                        <path d="M15 18h-5" />
+                        <path d="M10 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2" />
+                    </svg></div>
+                <span>Noticias</span>
+            </a>
+            <a class="nav-item" href="correlations.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M3 3v18h18" />
+                        <path d="m19 9-5 5-4-4-3 3" />
+                    </svg></div>
+                <span>Correlaciones</span>
+            </a>
+            <a class="nav-item" href="portfolio.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    </svg></div>
+                <span>Cartera</span>
+            </a>
+            <a class="nav-item active" href="blog.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M12 20h9" />
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg></div>
+                <span>Blog</span>
+            </a>
+        </div>
+        <div class="sidebar-section" style="margin-top:12px">
+            <div class="sidebar-section-label">Cuenta</div>
+            <a class="nav-item" href="subscription.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M20 12V22H4V12" />
+                        <path d="M22 7H2v5h20V7z" />
+                        <path d="M12 22V7" />
+                    </svg></div>
+                <span>Suscripción</span>
+            </a>
+            <a class="nav-item" href="profile.html">
+                <div class="nav-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg></div>
+                <span>Perfil</span>
+            </a>
+        </div>
+        <div class="sidebar-bottom">
+            <div class="user-card" onclick="window.location.href='profile.html'">
+                <div class="user-avatar" id="userAvatar">AA</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Usuario</div>
+                    <div class="user-plan" id="userPlan">Free</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <div class="topbar">
+            <div class="topbar-title">Blog</div>
+            <div class="topbar-actions" id="adminBtn" style="display:none">
+                <button class="topbar-btn primary" onclick="window.location.href='admin.html'">Panel admin →</button>
+            </div>
+        </div>
+        <div class="page-content" style="max-width:760px">
+            <div id="blogEmpty" class="empty-state" style="display:none">
+                <div class="empty-title">No hay posts publicados todavía</div>
+                <div class="empty-desc">Vuelve pronto.</div>
+            </div>
+            <div id="blogList" style="display:flex;flex-direction:column;gap:20px"></div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) window.location.href = 'login.html';
+
+        const headers = { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+        if (user.name || user.email) {
+            document.getElementById('userAvatar').textContent = (user.name || user.email).substring(0, 2).toUpperCase();
+            document.getElementById('userName').textContent = user.name || user.email;
+            document.getElementById('userPlan').textContent = user.plan || 'Free';
+        }
+
+        if (user.role === 'admin') {
+            document.getElementById('adminBtn').style.display = 'flex';
+        }
+
+        async function loadPosts() {
+    try {
+        const res = await fetch('http://localhost:3001/posts', { headers });
+        const data = await res.json();
+
+        if (!data.ok || data.items.length === 0) {
+            document.getElementById('blogEmpty').style.display = 'flex';
+            return;
+        }
+
+        const list = document.getElementById('blogList');
+        list.innerHTML = '';
+
+        for (let i = 0; i < data.items.length; i++) {
+            const post = data.items[i];
+            const date = new Date(post.createdAt).toLocaleDateString('es-ES', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+
+            const article = document.createElement('article');
+            article.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px 32px';
+
+            article.innerHTML =
+                '<div style="font-size:11px;color:var(--text3);font-family:\'IBM Plex Mono\',monospace;letter-spacing:.6px;margin-bottom:12px">' + date + '</div>' +
+                '<h2 style="font-size:20px;font-weight:600;color:var(--text);margin:0 0 16px;letter-spacing:-.3px">' + post.titulo + '</h2>' +
+                '<div style="font-size:14px;color:var(--text2);line-height:1.8;white-space:pre-wrap;margin-bottom:16px">' + post.contenido + '</div>' +
+                (post.imagen ? '<img src="' + post.imagen + '" style="width:100%;max-height:360px;object-fit:cover;border-radius:var(--r);border:1px solid var(--border)">' : '');
+
+            list.appendChild(article);
+        }
+    } catch (err) {
+        console.error('Error al cargar posts:', err.message);
+    }
+}
+        loadPosts();
+    </script>
+    <script src="sync.js"></script>
+</body>
+
+</html>
